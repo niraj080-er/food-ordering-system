@@ -32,13 +32,13 @@ public class OrderItem  extends BaseEntity<OrderItemId> {
     }
 
     private OrderItem(Builder builder) {
+
         super.setId(builder.orderItemId);
         product = builder.product;
         quantity = builder.quantity;
         price = builder.price;
         subTotal = builder.subTotal;
     }
-
 
 
 

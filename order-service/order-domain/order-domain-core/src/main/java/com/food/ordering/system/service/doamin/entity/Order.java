@@ -73,11 +73,58 @@ public class Order extends AggregateRoot<OrderId> {
         private OrderStatus orderStatus;
         private List<String> failureMessages;
 
+
+
         public void validateOrder() {
             validateInitialOrder();
             validateTotalPrice();
             validateItemPrice();
         }
+
+        public void pay(){
+            if(orderStatus != OrderStatus.PENDING){
+                throw new OrderDoaminException("Order is not in correct state for payment");
+            }
+            orderStatus = OrderStatus.PAID;
+        }
+
+        public void approve(){
+            if(orderStatus != OrderStatus.PAID ){
+                throw new OrderDoaminException("Order is not in correct state for approval");
+            }
+            orderStatus = OrderStatus.APPROVED;
+
+        }
+
+        public void initCencle(List<String> failureMessages){
+            if(orderStatus != OrderStatus.PAID){
+                throw new OrderDoaminException("Order is not in correct state for cancelation");
+            }
+            orderStatus = OrderStatus.CANCELING;
+            updateFailureMessage(failureMessages);
+        }
+        
+
+        public void cencle(List<String> failureMessage){
+            if(!(orderStatus == OrderStatus.CANCELLED || orderStatus==OrderStatus.PENDING)){
+                throw new OrderDoaminException("Order is not in corret state for initilization");
+            }
+            orderStatus=OrderStatus.CANCELLED;
+            updateFailureMessage(failureMessage);
+
+        }
+        public void updateFailureMessage(List<String> failureMessages ){
+
+            if(this.failureMessages != null && failureMessages != null){
+                    this.failureMessages.addAll(failureMessages.stream().filter(message->!message.isEmpty()).toList());
+            }
+            if(this.failureMessages==null){
+                this.failureMessages=failureMessages;
+            }
+
+        }
+
+ 
 
         private void validateInitialOrder(){
             if(orderStatus== null || orderId == null){
@@ -90,14 +137,16 @@ public class Order extends AggregateRoot<OrderId> {
             if(price == null || !price.isGreaterThan()){
                 throw new OrderDoaminException("Order total price must be greaterthan zero ");
             }
+
+           
             
         }
         
-        private void validateItemPrice(){
-
+           private void validateItemPrice(){
            Money orerItemTotal=items.stream().map(orderItem->{
-            validateItemPrice(orderItem);
-            return orderItem.getSubTotal();
+           validateItemPrice(orderItem);
+           return orderItem.getSubTotal();
+
 
            }).reduce(Money.ZERO, Money::add);
 
