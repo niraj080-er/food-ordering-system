@@ -1,0 +1,3 @@
+# Project exclude paths
+/common/common-domain/target/
+/order-service/order-domain/order-domain-core/target/
