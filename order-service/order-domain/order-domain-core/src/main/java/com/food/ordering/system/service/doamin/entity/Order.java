@@ -127,7 +127,7 @@ public class Order extends AggregateRoot<OrderId> {
 
  
 
-        private void validateInitialOrder(){
+        public void validateInitialOrder(){
             if(orderStatus== null || orderId == null){
                 throw new OrderDoaminException("Order is not in correct state for initilization");
             }
@@ -243,4 +243,7 @@ public class Order extends AggregateRoot<OrderId> {
             return new Order(this);
         }
     }
+
+
+    
 }
