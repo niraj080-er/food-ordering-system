@@ -1,9 +1,9 @@
-package com.food.ordering.system.service.doamin.events;
+package com.food.ordering.system.service.domain.events;
 
 import java.time.ZonedDateTime;
 
 import com.food.ordering.system.domain.event.DomainEvent;
-import com.food.ordering.system.service.doamin.entity.Order;
+import com.food.ordering.system.service.domain.entity.Order;
 
 public abstract class OrderEvent  implements DomainEvent<Order>
 {

@@ -1,4 +1,4 @@
-package com.food.ordering.system.service.doamin.entity;
+package com.food.ordering.system.service.domain.entity;
 
 import com.food.ordering.system.domain.entity.BaseEntity;
 import com.food.ordering.system.domain.valueobject.Money;
@@ -21,6 +21,11 @@ public class Product  extends  BaseEntity<ProductId>{
 
     public Money getPrice() {
         return price;
+    }
+
+    public void updateWithConfirmedNameAndPrice(String name, Money price) {
+        this.name = name;
+        this.price = price;
     }
 
     

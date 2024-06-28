@@ -7,6 +7,18 @@
         <groupId>com.food.ordering.system</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>common-domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>order-application-service</artifactId>
+        </dependency>
+    </dependencies>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>order-application</artifactId>
@@ -14,12 +26,5 @@
     <properties>
 
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.food.ordering.system</groupId>
-            <artifactId>order-application-service</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

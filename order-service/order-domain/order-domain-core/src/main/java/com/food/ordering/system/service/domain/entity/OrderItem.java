@@ -1,10 +1,9 @@
-package com.food.ordering.system.service.doamin.entity;
+package com.food.ordering.system.service.domain.entity;
 
 import com.food.ordering.system.domain.entity.BaseEntity;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
-
-import com.food.ordering.system.service.doamin.valueobject.OrderItemId;
+import com.food.ordering.system.service.domain.valueobject.OrderItemId;
 
 
 public class OrderItem  extends BaseEntity<OrderItemId> { 
@@ -105,5 +104,16 @@ public class OrderItem  extends BaseEntity<OrderItemId> {
         public OrderItem build() {
             return new OrderItem(this);
         }
+    }
+
+
+    public void initializeOrderItem(OrderId id, OrderItemId orderItemId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'initializeOrderItem'");
+    }
+
+    public boolean isPriceValid() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isPriceValid'");
     }
 }

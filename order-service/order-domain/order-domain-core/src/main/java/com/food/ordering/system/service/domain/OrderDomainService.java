@@ -1,12 +1,12 @@
-package com.food.ordering.system.service.doamin;
+package com.food.ordering.system.service.domain;
 
 import java.util.*;
 
-import com.food.ordering.system.service.doamin.entity.Order;
-import com.food.ordering.system.service.doamin.entity.Restaurant;
-import com.food.ordering.system.service.doamin.events.OrderCencledEvent;
-import com.food.ordering.system.service.doamin.events.OrderCreateEvent;
-import com.food.ordering.system.service.doamin.events.OrderPaidEvent;
+import com.food.ordering.system.service.domain.entity.Order;
+import com.food.ordering.system.service.domain.entity.Restaurant;
+import com.food.ordering.system.service.domain.events.OrderCencledEvent;
+import com.food.ordering.system.service.domain.events.OrderCreateEvent;
+import com.food.ordering.system.service.domain.events.OrderPaidEvent;
 
 public interface OrderDomainService {
     
