@@ -6,7 +6,8 @@ import com.food.ordering.system.domain.valueobject.OrderId;
 import com.food.ordering.system.service.domain.valueobject.OrderItemId;
 
 
-public class OrderItem  extends BaseEntity<OrderItemId> { 
+
+public class OrderItem  extends BaseEntity<OrderItemId> {
 
     private OrderId orderId;
     private final Product product;
@@ -115,5 +116,10 @@ public class OrderItem  extends BaseEntity<OrderItemId> {
     public boolean isPriceValid() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isPriceValid'");
+    }
+
+    public static com.food.ordering.system.service.domain.entity.Restaurant.Builder builder() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'builder'");
     }
 }

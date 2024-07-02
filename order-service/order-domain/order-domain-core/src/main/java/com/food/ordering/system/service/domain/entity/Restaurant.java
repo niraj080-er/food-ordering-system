@@ -5,40 +5,39 @@ import java.util.List;
 import com.food.ordering.system.domain.entity.AggregateRoot;
 import com.food.ordering.system.domain.valueobject.RestuarantId;
 
-public class Restaurant  extends AggregateRoot<RestuarantId>{
+public class Restaurant extends AggregateRoot<RestuarantId> {
 
     private final List<Product> products;
     private boolean active;
 
     private Restaurant(Builder builder) {
-        super.setId(builder.resturantId);
+        super.setId(builder.restaurantId);
         products = builder.products;
         active = builder.active;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public List<Product> getProducts() {
         return products;
     }
+
     public boolean isActive() {
         return active;
     }
 
-
-    public static final class  Builder {
-        private RestuarantId resturantId;
+    public static final class Builder {
+        private RestuarantId restaurantId;
         private List<Product> products;
         private boolean active;
 
         private Builder() {
         }
 
-        public static Builder builder() {
-            return new Builder();
-        }
-
-        public Builder resturantId(RestuarantId val) {
-            resturantId = val;
+        public Builder restaurantId(RestuarantId val) {
+            restaurantId = val;
             return this;
         }
 
