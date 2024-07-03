@@ -2,6 +2,7 @@ package com.food.ordering.system.service.domain.entity;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 import com.food.ordering.system.domain.entity.AggregateRoot;
 import com.food.ordering.system.domain.valueobject.CustomerId;
@@ -202,10 +203,10 @@ public class Order extends AggregateRoot<OrderId> {
             return this;
         }
 
-        public Builder items(List<OrderItem> val) {
-            items = val;
-            return this;
-        }
+        // public Builder items(Stream<OrderItem> stream) {
+        //     items = (List<OrderItem>) stream;
+        //     return this;
+        // }
 
         public Builder trackingId(TrackingId val) {
             trackingId = val;
@@ -225,5 +226,6 @@ public class Order extends AggregateRoot<OrderId> {
         public Order build() {
             return new Order(this);
         }
+
     }
 }

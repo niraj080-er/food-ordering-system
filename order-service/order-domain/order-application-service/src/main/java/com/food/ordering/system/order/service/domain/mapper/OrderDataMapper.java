@@ -28,35 +28,26 @@ public class OrderDataMapper {
         return Restaurant.builder()
         .restaurantId(new RestuarantId(createOrderCommand.getRestaurantId()))
         .products(createOrderCommand.getItems().stream().map(orderItem->
-        new Product(new ProductId(orderItem.getProductId())))
-        .collect(Collectors.toList()))
+        new Product(new ProductId(orderItem.getProductId()))).collect(Collectors.toList()))
         .build();
-                 
     }
 
 public Order createOrderCammandToOrder(CreateOrderCommand createOrderCommand){
 
-        return Order.builder()
+    return Order.builder()
         .customerId(new CustomerId(createOrderCommand.getCustomerId()))
         .restaurantId(new RestuarantId(createOrderCommand.getRestaurantId()))
         .deliveryAddress(orderAddressToStreetAddress(createOrderCommand.getAddress()))
         .price(new Money(createOrderCommand.getPrice()))
-        .items(orderItemToOrderItemEntity(createOrderCommand.getItems()))
-        .build();
+        .items(createOrderCommand.getItems().stream())
+            .map(orderItem -> OrderItem.builder()
+                .products(Collections.singletonList(new Product(new ProductId(orderItem.getProductId()))))
+                .price(new Money(orderItem.getPrice()))
+                .quantity(orderItem.getQuantity())
+                .subTotal(new Money(orderItem.getSubTotal()))
+                .build()
+            .collect(Collectors.toList()));
 }
-
-    @SuppressWarnings("unchecked")
-    private List<OrderItem> orderItemToOrderItemEntity(List<com.food.ordering.system.order.service.domain.dto.create.OrderItem> orderItems) {
-            return orderItems.stream()
-                    .map(orderItem -> OrderItem.builder()
-                    .products(new Product(new ProductId(orderItem.getProductId())))
-                    .price(new Money(orderItem.getPrice()))
-                    .quantity(orderItem.getQuantity())
-                    .subTotal(new Money(orderItem.getSubTotal()))
-                    .build()).collect(Collectors.toList());
-
-
-    }
 
     private StreetAddress orderAddressToStreetAddress(OrderAddress address) {
         return new StreetAddress(
@@ -67,5 +58,9 @@ public Order createOrderCammandToOrder(CreateOrderCommand createOrderCommand){
         );
     }
 
+    public CreateOrderCommand orderToCreateOrderResponse(Order orderResult) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'orderToCreateOrderResponse'");
+    }
 
 }
