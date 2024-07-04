@@ -14,8 +14,7 @@ import com.food.ordering.system.service.domain.entity.Order;
 import com.food.ordering.system.service.domain.entity.Restaurant;
 import com.food.ordering.system.service.domain.entity.Transactional;
 import com.food.ordering.system.service.domain.events.OrderCreateEvent;
-import com.food.ordering.system.service.domain.events.OrderEvent;
-import com.food.ordering.system.service.domain.exception.OrderDoaminException;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -53,7 +52,7 @@ public class OrderCreateHelper {
     public OrderCreateEvent persistOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         Restaurant restaurant = checkRestaurant(createOrderCommand);
-        Order order = orderDataMapper.createOrderCammandToOrder(createOrderCommand);
+        Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
         @SuppressWarnings("unused")
         OrderCreateEvent orderCreatedEvent = orderDomainService.validateItemAndInitiateOrder(order, restaurant);
         log.info("order created");

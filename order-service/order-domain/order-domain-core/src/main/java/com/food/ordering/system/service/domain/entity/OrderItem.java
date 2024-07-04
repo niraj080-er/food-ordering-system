@@ -5,42 +5,36 @@ import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
 import com.food.ordering.system.service.domain.valueobject.OrderItemId;
 
+public class OrderItem extends BaseEntity<OrderItemId> {
 
-
-public class OrderItem  extends BaseEntity<OrderItemId> {
-
-    private OrderId orderId;
     private final Product product;
     private final int quantity;
-    private Money price;
-    private Money subTotal;
-
-    /**
-     * @param orderId
-     */
-     void intializeOrderItem( OrderId orderId, OrderItemId orderItemId ){
-        this.orderId=orderId;
-        super.setId(orderItemId);
-
-    }
-
-    public boolean ispriceValue(){
-        return price.isGreaterThan() && 
-        price.equals(product.getPrice()) &&
-         price.multiply(quantity).equals(subTotal);
-         
-    }
+    private final Money price;
+    private final Money subtotal;
+    private OrderId orderId;
 
     private OrderItem(Builder builder) {
-
         super.setId(builder.orderItemId);
         product = builder.product;
         quantity = builder.quantity;
         price = builder.price;
-        subTotal = builder.subTotal;
+        subtotal = builder.subtotal;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
+    void initializeOrderItem(OrderId orderId, OrderItemId orderItemId) {
+        this.orderId = orderId;
+        super.setId(orderItemId);
+    }
+
+    boolean isPriceValid() {
+        return price.isGreaterThan() &&
+                price.equals(product.getPrice()) &&
+                price.multiply(quantity).equals(subtotal);
+    }
 
     public OrderId getOrderId() {
         return orderId;
@@ -58,23 +52,18 @@ public class OrderItem  extends BaseEntity<OrderItemId> {
         return price;
     }
 
-    public Money getSubTotal() {
-        return subTotal;
+    public Money getSubtotal() {
+        return subtotal;
     }
-
 
     public static final class Builder {
         private OrderItemId orderItemId;
         private Product product;
         private int quantity;
         private Money price;
-        private Money subTotal;
+        private Money subtotal;
 
         private Builder() {
-        }
-
-        public static Builder buil() {
-            return new Builder();
         }
 
         public Builder orderItemId(OrderItemId val) {
@@ -97,8 +86,8 @@ public class OrderItem  extends BaseEntity<OrderItemId> {
             return this;
         }
 
-        public Builder subTotal(Money val) {
-            subTotal = val;
+        public Builder subtotal(Money val) {
+            subtotal = val;
             return this;
         }
 
@@ -106,20 +95,5 @@ public class OrderItem  extends BaseEntity<OrderItemId> {
             return new OrderItem(this);
         }
     }
-
-
-    public void initializeOrderItem(OrderId id, OrderItemId orderItemId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'initializeOrderItem'");
-    }
-
-    public boolean isPriceValid() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isPriceValid'");
-    }
-
-    public static com.food.ordering.system.service.domain.entity.Restaurant.Builder builder() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'builder'");
-    }
 }
+

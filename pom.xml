@@ -9,6 +9,8 @@
         <module>common</module>
         <module>common</module>
         <module>common</module>
+        <module>infrastructure</module>
+        <module>infrastructure</module>
     </modules>
 
     <parent>
@@ -25,10 +27,17 @@
 
     <properties>
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+        <mockito-core.version>4.11.0</mockito-core.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+        <dependency>
+              <groupId>org.mockito</groupId>
+               <artifactId>mockito-core</artifactId>
+               <version>4.11.0</version>
+             <scope>test</scope>
+        </dependency>
             <dependency>
                 <groupId>com.food.ordering.system</groupId>
                 <artifactId>order-domain-core</artifactId>
@@ -60,7 +69,6 @@
                 <artifactId>common-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
         </dependencies>
     </dependencyManagement>

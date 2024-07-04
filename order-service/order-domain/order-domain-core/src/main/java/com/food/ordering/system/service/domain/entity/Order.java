@@ -2,7 +2,7 @@ package com.food.ordering.system.service.domain.entity;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Stream;
+
 
 import com.food.ordering.system.domain.entity.AggregateRoot;
 import com.food.ordering.system.domain.valueobject.CustomerId;
@@ -118,7 +118,7 @@ public class Order extends AggregateRoot<OrderId> {
     private void validateItemsPrice() {
         Money orderItemsTotal = items.stream().map(orderItem -> {
             validateItemPrice(orderItem);
-            return orderItem.getSubTotal();
+            return orderItem.getSubtotal();
         }).reduce(Money.ZERO, Money::add);
 
         if (!price.equals(orderItemsTotal)) {
@@ -164,68 +164,68 @@ public class Order extends AggregateRoot<OrderId> {
         return failureMessages;
     }
 
-    public static final class Builder {
-        private OrderId orderId;
-        private CustomerId customerId;
-        private RestuarantId restaurantId;
-        private StreetAddress deliveryAddress;
-        private Money price;
-        private List<OrderItem> items;
-        private TrackingId trackingId;
-        private OrderStatus orderStatus;
-        private List<String> failureMessages;
+   public static final class Builder {
+    private OrderId orderId;
+    private CustomerId customerId;
+    private RestuarantId restaurantId;
+    private StreetAddress deliveryAddress;
+    private Money price;
+    private List<OrderItem> items;
+    private TrackingId trackingId;
+    private OrderStatus orderStatus;
+    private List<String> failureMessages;
 
-        private Builder() {
-        }
-
-        public Builder orderId(OrderId val) {
-            orderId = val;
-            return this;
-        }
-
-        public Builder customerId(CustomerId val) {
-            customerId = val;
-            return this;
-        }
-
-        public Builder restaurantId(RestuarantId val) {
-            restaurantId = val;
-            return this;
-        }
-
-        public Builder deliveryAddress(StreetAddress val) {
-            deliveryAddress = val;
-            return this;
-        }
-
-        public Builder price(Money val) {
-            price = val;
-            return this;
-        }
-
-        // public Builder items(Stream<OrderItem> stream) {
-        //     items = (List<OrderItem>) stream;
-        //     return this;
-        // }
-
-        public Builder trackingId(TrackingId val) {
-            trackingId = val;
-            return this;
-        }
-
-        public Builder orderStatus(OrderStatus val) {
-            orderStatus = val;
-            return this;
-        }
-
-        public Builder failureMessages(List<String> val) {
-            failureMessages = val;
-            return this;
-        }
-
-        public Order build() {
-            return new Order(this);
-        }
-
+    private Builder() {
     }
+
+    public Builder orderId(OrderId val) {
+        orderId = val;
+        return this;
+    }
+
+    public Builder customerId(CustomerId val) {
+        customerId = val;
+        return this;
+    }
+
+    public Builder restaurantId(RestuarantId val) {
+        restaurantId = val;
+        return this;
+    }
+
+    public Builder deliveryAddress(StreetAddress val) {
+        deliveryAddress = val;
+        return this;
+    }
+
+    public Builder price(Money val) {
+        price = val;
+        return this;
+    }
+
+    public Builder items(List<OrderItem> val) {
+        items = val;
+        return this;
+    }
+
+    public Builder trackingId(TrackingId val) {
+        trackingId = val;
+        return this;
+    }
+
+    public Builder orderStatus(OrderStatus val) {
+        orderStatus = val;
+        return this;
+    }
+
+    public Builder failureMessages(List<String> val) {
+        failureMessages = val;
+        return this;
+    }
+
+    public Order build() {
+        return new Order(this);
+    }
+}
+
 }

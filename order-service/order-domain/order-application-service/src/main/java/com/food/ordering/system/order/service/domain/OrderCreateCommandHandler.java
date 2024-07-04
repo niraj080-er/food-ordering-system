@@ -1,23 +1,16 @@
 package com.food.ordering.system.order.service.domain;
 
-import com.food.ordering.system.domain.exception.DomainExecption;
+
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
-import com.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
+import com.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
 import com.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMesagePublisher;
-import com.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
-import com.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
-import com.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
-import com.food.ordering.system.service.domain.OrderDomainService;
-import com.food.ordering.system.service.domain.entity.Customer;
-import com.food.ordering.system.service.domain.entity.Order;
-import com.food.ordering.system.service.domain.entity.Restaurant;
 import com.food.ordering.system.service.domain.events.OrderCreateEvent;
 
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+
 
 @Slf4j
 @Component
@@ -37,13 +30,12 @@ private final OrderCreatedPaymentRequestMesagePublisher orderCreatedPaymentReque
         this.orderCreatedPaymentRequestMesagePublisher = orderCreatedPaymentRequestMesagePublisher;
     }
 
-    public CreateOrderCommand createOrder(CreateOrderCommand createOrderCommand){
-     OrderCreateEvent  orderCreateEvent= orderCreateHelper.persistOrder(createOrderCommand);
-     log.info("order is created");
-        orderCreatedPaymentRequestMesagePublisher.publish(orderCreateEvent);
-        return orderDataMapper.orderToCreateOrderResponse(orderCreateEvent.getOrder());
-
+    @SuppressWarnings("unchecked")
+    public TrackOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
+        OrderCreateEvent orderCreatedEvent = orderCreateHelper.persistOrder(createOrderCommand);
+        log.info("Order is created with id: {}", orderCreatedEvent.getOrder().getId().getValue());
+        orderCreatedPaymentRequestMesagePublisher.publish(orderCreatedEvent);
+        return orderDataMapper.orderToTrackOrderResponse(orderCreatedEvent.getOrder(), "Order Created Successfully");
     }
-
        
 }
