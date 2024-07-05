@@ -12,16 +12,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="order-messaging" />
         <module name="order-application-service" />
+        <module name="kafka-consumer" />
         <module name="common-domain" />
+        <module name="kafka-producer" />
         <module name="order-application" />
+        <module name="kafka-module" />
+        <module name="kafka-config-data" />
         <module name="order-domain-core" />
         <module name="order-container" />
         <module name="order-dataaccess" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="infrastructure" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -29,6 +30,11 @@
       <module name="common-domain" options="-parameters" />
       <module name="food-ordering-system" options="-parameters" />
       <module name="infrastructure" options="-parameters" />
+      <module name="kafka" options="-parameters" />
+      <module name="kafka-config-data" options="-parameters" />
+      <module name="kafka-consumer" options="-parameters" />
+      <module name="kafka-module" options="-parameters" />
+      <module name="kafka-producer" options="-parameters" />
       <module name="order-application" options="-parameters" />
       <module name="order-application-service" options="-parameters" />
       <module name="order-container" options="-parameters" />
