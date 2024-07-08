@@ -3,10 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-          <groupId>com.food.ordering.system</groupId>
-          <artifactId>kafka</artifactId>
-          <version>1.0-SNAPSHOT</version>
+        <groupId>com.food.ordering.system</groupId>
+        <artifactId>kafka</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.food.ordering.system</groupId>
@@ -17,5 +18,23 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
+    <dependencies>
+    
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.7.5</version> <!-- Ensure you use the correct version -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.10.2</version> <!-- Ensure you use the correct version -->
+        </dependency>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>kafka-config-data</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
