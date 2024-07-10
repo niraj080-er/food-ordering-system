@@ -11,10 +11,29 @@
 
     <artifactId>order-messaging</artifactId>
 
-    <properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>order-application-service</artifactId>
+        </dependency>
 
-    </properties>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>kafka-module</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>kafka-consumer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>kafka-producer</artifactId>
+        </dependency>
 
-
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>common-domain</artifactId>
+        </dependency>
+    </dependencies>
     
 </project>
