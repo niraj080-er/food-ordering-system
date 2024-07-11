@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 public class OrderAddress {
-
     @NotNull
     @Max(value = 50)
     private final String street;

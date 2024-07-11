@@ -11,9 +11,7 @@ import java.util.UUID;
 @Getter
 @Builder
 @AllArgsConstructor
-
 public class OrderItem {
-
     @NotNull
     private final UUID productId;
     @NotNull

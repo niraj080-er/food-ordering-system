@@ -1,6 +1,5 @@
-version: '27.0.2'
+version: '3.7'
 
 networks:
-  food-odering-system:
-   driver: bridge
-
+  food-ordering-system:
+    driver: bridge
