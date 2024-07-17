@@ -6,6 +6,9 @@ import com.food.ordering.system.domain.entity.AggregateRoot;
 import com.food.ordering.system.domain.valueobject.CustomerId;
 import com.food.ordering.system.domain.valueobject.Money;
 
+
+
+
 public class CreditEntity extends AggregateRoot<CreditEntityId> {
 
     private  final CustomerId customerId;
@@ -23,8 +26,6 @@ public class CreditEntity extends AggregateRoot<CreditEntityId> {
     public  void subtractCreditAmount(Money amount){
         totalCreditAmount=totalCreditAmount.subtract(amount);
     }
-
-
     public static final class Builder {
         private CreditEntityId creditEntityId;
         private CustomerId customerId;
@@ -36,7 +37,6 @@ public class CreditEntity extends AggregateRoot<CreditEntityId> {
         public static Builder builder() {
             return new Builder();
         }
-
         public Builder creditEntityId(CreditEntityId val) {
             creditEntityId= val;
             return this;

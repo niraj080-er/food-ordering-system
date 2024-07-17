@@ -1,6 +1,5 @@
 package com.food.odering.system.payment.service.domain.entity;
 
-import com.food.odering.system.payment.service.domain.valuobject.CreditEntityId;
 import com.food.odering.system.payment.service.domain.valuobject.CreditHistoryId;
 import com.food.odering.system.payment.service.domain.valuobject.TransactionType;
 import com.food.ordering.system.domain.entity.AggregateRoot;

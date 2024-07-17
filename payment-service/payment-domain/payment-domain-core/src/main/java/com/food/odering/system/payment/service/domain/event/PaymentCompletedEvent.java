@@ -1,12 +1,10 @@
 package com.food.odering.system.payment.service.domain.event;
 
 import com.food.odering.system.payment.service.domain.entity.Payment;
-import com.food.ordering.system.domain.event.DomainEvent;
 import com.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 
 import java.time.ZonedDateTime;
 import java.util.Collections;
-import java.util.List;
 
 public class PaymentCompletedEvent extends PaymentEvent {
 

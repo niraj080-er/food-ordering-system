@@ -6,6 +6,7 @@ import com.food.odering.system.payment.service.domain.entity.Payment;
 import com.food.odering.system.payment.service.domain.event.PaymentCancelledEvent;
 import com.food.odering.system.payment.service.domain.event.PaymentCompletedEvent;
 import com.food.odering.system.payment.service.domain.event.PaymentEvent;
+import com.food.odering.system.payment.service.domain.event.PaymentFailedEvent;
 import com.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 
 import java.util.List;
@@ -15,10 +16,14 @@ public interface PaymentDomainService  {
     PaymentEvent validateInitiatePayment(Payment payment,
                                          CreditEntity creditEntity,
                                          List<CreditHistory> creditHistories,
-                                         List<String> failureMessage, DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher);
+                                         List<String> failureMessage, 
+                                         DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher,
+                                         DomainEventPublisher<PaymentFailedEvent> paymentFailedventDomainEventPublisher);
 
     PaymentEvent validateAndCancelPayment(Payment payment,
                                           CreditEntity creditEntity,
                                           List<CreditHistory> creditHistories,
-                                          List<String> failureMessage, DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher);
+                                          List<String> failureMessage,
+                                          DomainEventPublisher<PaymentCancelledEvent>  paymentCencellDomainEventPublisher,
+                                          DomainEventPublisher<PaymentFailedEvent> paymentFailedventDomainEventPublisher);
 }
