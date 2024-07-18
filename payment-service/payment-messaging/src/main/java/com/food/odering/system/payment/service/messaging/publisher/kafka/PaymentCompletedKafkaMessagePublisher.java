@@ -1,7 +1,6 @@
 package com.food.odering.system.payment.service.messaging.publisher.kafka;
 
 
-import com.food.odering.system.payment.service.domain.event.PaymentCancelledEvent;
 import com.food.odering.system.payment.service.domain.event.PaymentCompletedEvent;
 import com.food.odering.system.payment.service.messaging.mapper.PaymentMessagingDataMapper;
 import com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
