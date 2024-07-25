@@ -1,28 +1,20 @@
 server:
   port: 8184
 
-logging:
-  level:
-    org.springframework.boot.autoconfigure.jdbc.DataSourceInitializer: DEBUG
-
 spring:
   jpa:
     open-in-view: false
     show-sql: false
-    hibernate:
-      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=customer&binaryTransfer=true&reWriteBatchedInserts=true
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
-
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:init-schema.sql
-      data-locations: classpath:init-data.sql
+    platform: postgres
+    schema: classpath:init-schema.sql
+    data: classpath:init-data.sql
+    initialization-mode: always

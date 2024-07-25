@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CustomerServiceApplication",
+            "request": "launch",
+            "mainClass": "com.food.ordering.system.customer.service.CustomerServiceApplication",
+            "projectName": "customer-service"
+        },
+        {
+            "type": "java",
+            "name": "RestaurantServiceApplication",
+            "request": "launch",
+            "mainClass": "com.food.ordering.system.restaurant.service.domain.RestaurantServiceApplication",
+            "projectName": "restaurant-container"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-OrderServiceApplication<order-container>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.food.ordering.system.order.service.domain.OrderServiceApplication",
+            "projectName": "order-container",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=33815 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=order-container"
+        }
+    ]
+}

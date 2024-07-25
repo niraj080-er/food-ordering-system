@@ -6,57 +6,66 @@ import com.food.ordering.system.domain.valueobject.OrderApprovalStatus;
 import com.food.ordering.system.domain.valueobject.OrderStatus;
 import com.food.ordering.system.domain.valueobject.RestaurantId;
 import com.food.ordering.system.restaurant.service.domain.valueobject.OrderApprovalId;
-import lombok.Builder;
-import lombok.Getter;
 
 import java.util.List;
 import java.util.UUID;
 
-@Getter
 public class Restaurant extends AggregateRoot<RestaurantId> {
-    private OrderApproval orderApproval;
-    private boolean active;
-    private  final  OrderDetail orderDetail;
+   private OrderApproval orderApproval;
+   private boolean active;
+   private final OrderDetail orderDetail;
 
-    private Restaurant(Builder builder) {
-        setId(builder.restaurantId);
-        orderApproval = builder.orderApproval;
-        setActive(builder.active);
-        orderDetail = builder.orderDetail;
-    }
+   public void validateOrder(List<String> failureMessages) {
+       if (orderDetail.getOrderStatus() != OrderStatus.PAID) {
+           failureMessages.add("Payment is not completed for order: " + orderDetail.getId());
+       }
+       Money totalAmount = orderDetail.getProducts().stream().map(product -> {
+           if (!product.isAvailable()) {
+               failureMessages.add("Product with id: " + product.getId().getValue()
+                       + " is not available");
+           }
+           return product.getPrice().multiply(product.getQuantity());
+       }).reduce(Money.ZERO, Money::add);
 
-    public void validateOrder(List<String> failureMessage){
-        if(orderDetail.getStatus()!= OrderStatus.PAID){
-            failureMessage.add("Payment is not completed for this Order : " + orderDetail.getId());
-        }
-        Money totalAmount=orderDetail.getProducts().stream().map(product -> {
-        if(!product.isAvailable()){
-            failureMessage.add("Product with id "+ product.getId().getValue() + " is not available");
-        }
-            return product.getPrice().multiply(product.getQuantity());
-        }).reduce(Money.ZERO,Money::add);
+       if (!totalAmount.equals(orderDetail.getTotalAmount())) {
+           failureMessages.add("Price total is not correct for order: " + orderDetail.getId());
+       }
+   }
 
-        if(!totalAmount.equals(orderDetail.getTotalAmount())){
-            failureMessage.add("Total price must be same as  "+ orderDetail.getId());
-        }
-    }
-
-    public void constructOrderApproval(OrderApprovalStatus orderApprovalStatus){
-        this.orderApproval=OrderApproval.builder()
-                .orderApprovalId(new OrderApprovalId(UUID.randomUUID()))
-                .restaurantId(this.getId())
-                .orderId(this.getOrderDetail().getId())
-                .orderApprovalStatus(orderApprovalStatus)
-                .build();
-    }
+   public void constructOrderApproval(OrderApprovalStatus orderApprovalStatus) {
+       this.orderApproval = OrderApproval.builder()
+               .orderApprovalId(new OrderApprovalId(UUID.randomUUID()))
+               .restaurantId(this.getId())
+               .orderId(this.getOrderDetail().getId())
+               .approvalStatus(orderApprovalStatus)
+               .build();
+   }
 
     public void setActive(boolean active) {
         this.active = active;
     }
 
+    private Restaurant(Builder builder) {
+        setId(builder.restaurantId);
+        orderApproval = builder.orderApproval;
+        active = builder.active;
+        orderDetail = builder.orderDetail;
+    }
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    public OrderApproval getOrderApproval() {
+        return orderApproval;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
     }
 
     public static final class Builder {
@@ -67,7 +76,6 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
 
         private Builder() {
         }
-
 
         public Builder restaurantId(RestaurantId val) {
             restaurantId = val;

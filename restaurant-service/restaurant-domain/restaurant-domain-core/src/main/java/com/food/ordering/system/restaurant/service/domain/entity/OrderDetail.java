@@ -4,20 +4,17 @@ import com.food.ordering.system.domain.entity.BaseEntity;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
 import com.food.ordering.system.domain.valueobject.OrderStatus;
-import lombok.Getter;
 
 import java.util.List;
 
-@Getter
 public class OrderDetail extends BaseEntity<OrderId> {
-
-    private OrderStatus status;
+    private OrderStatus orderStatus;
     private Money totalAmount;
     private final List<Product> products;
 
     private OrderDetail(Builder builder) {
         setId(builder.orderId);
-        status = builder.status;
+        orderStatus = builder.orderStatus;
         totalAmount = builder.totalAmount;
         products = builder.products;
     }
@@ -27,9 +24,21 @@ public class OrderDetail extends BaseEntity<OrderId> {
     }
 
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public Money getTotalAmount() {
+        return totalAmount;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
     public static final class Builder {
         private OrderId orderId;
-        private OrderStatus status;
+        private OrderStatus orderStatus;
         private Money totalAmount;
         private List<Product> products;
 
@@ -41,8 +50,8 @@ public class OrderDetail extends BaseEntity<OrderId> {
             return this;
         }
 
-        public Builder status(OrderStatus val) {
-            status = val;
+        public Builder orderStatus(OrderStatus val) {
+            orderStatus = val;
             return this;
         }
 

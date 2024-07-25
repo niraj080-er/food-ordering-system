@@ -3,43 +3,53 @@ package com.food.ordering.system.restaurant.service.domain.entity;
 import com.food.ordering.system.domain.entity.BaseEntity;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.ProductId;
-import lombok.Builder;
-import lombok.Getter;
 
-@Getter
 public class Product extends BaseEntity<ProductId> {
     private String name;
     private Money price;
     private final int quantity;
-    private boolean isAvailable;
+    private boolean available;
+
+    public void updateWithConfirmedNamePriceAndAvailability(String name, Money price, boolean available) {
+        this.name = name;
+        this.price = price;
+        this.available = available;
+    }
 
     private Product(Builder builder) {
-       setId(builder.productId);
+        setId(builder.productId);
         name = builder.name;
         price = builder.price;
         quantity = builder.quantity;
-        isAvailable = builder.isAvailable;
+        available = builder.available;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public  void  updatePriceWithConfirmedPriceWithAvailability(String name, Money price, boolean
-            isAvailable){
-        this.name=name;
-        this.isAvailable=isAvailable;
-        this.price=price;
-
+    public String getName() {
+        return name;
     }
 
+    public Money getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
 
     public static final class Builder {
         private ProductId productId;
         private String name;
         private Money price;
         private int quantity;
-        private boolean isAvailable;
+        private boolean available;
 
         private Builder() {
         }
@@ -64,8 +74,8 @@ public class Product extends BaseEntity<ProductId> {
             return this;
         }
 
-        public Builder isAvailable(boolean val) {
-            isAvailable = val;
+        public Builder available(boolean val) {
+            available = val;
             return this;
         }
 

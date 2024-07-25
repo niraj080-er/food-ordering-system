@@ -1,14 +1,14 @@
 server:
-    port: 8182
+  port: 8182
 
 logging:
   level:
-    com.food.ordering.system : DEBUG
+    com.food.ordering.system: DEBUG
 
 payment-service:
   payment-request-topic-name: payment-request
   payment-response-topic-name: payment-response
-  
+
 spring:
   jpa:
     open-in-view: false
@@ -24,7 +24,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     platform: postgres
     schema: classpath:init-schema.sql
-    data: classpath:init:data.sql
+    data: classpath:init-data.sql
     initialization-mode: always
 
 kafka-config:
