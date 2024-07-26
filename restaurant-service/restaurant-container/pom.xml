@@ -39,6 +39,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version> <!-- Ensure correct version -->
                 <configuration>
                     <image>
                         <name>${project.groupId}/restaurant.service:${project.version}</name>
@@ -55,6 +56,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

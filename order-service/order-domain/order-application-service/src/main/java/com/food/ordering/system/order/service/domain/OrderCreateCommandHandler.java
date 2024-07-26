@@ -16,11 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderCreateCommandHandler {
 
 	private final OrderCreateHelper orderCreateHelper;
-
 	private final OrderDataMapper orderDataMapper;
-
-	private Logger log;
-
 	private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;
 
 	public OrderCreateCommandHandler(OrderCreateHelper orderCreateHelper, OrderDataMapper orderDataMapper,

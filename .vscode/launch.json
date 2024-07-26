@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PaymentServiceApplication",
+            "request": "launch",
+            "mainClass": "com.food.ordering.system.payment.service.domain.PaymentServiceApplication",
+            "projectName": "payment-container"
+        },
+        {
+            "type": "java",
             "name": "CustomerServiceApplication",
             "request": "launch",
             "mainClass": "com.food.ordering.system.customer.service.CustomerServiceApplication",
