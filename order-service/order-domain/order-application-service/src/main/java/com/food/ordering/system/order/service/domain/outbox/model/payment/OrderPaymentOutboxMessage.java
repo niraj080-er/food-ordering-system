@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
+
 @Getter
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class OrderPaymentOutboxMessage {
+
 private UUID id;
 private  UUID sagaId;
 private String type;
@@ -25,5 +27,23 @@ private String payload;
 private SagaStatus status;
 private OrderStatus orderStatus;
 private OutboxStatus outboxStatus;
+private  int version;
 
+    public void setProcessedAt(ZonedDateTime processedAt) {
+        this.processedAt = processedAt;
+    }
+
+    public void setStatus(SagaStatus status) {
+        this.status = status;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+
+    public void setOutboxStatus(OutboxStatus outboxStatus) {
+        this.outboxStatus = outboxStatus;
+    }
 }
+

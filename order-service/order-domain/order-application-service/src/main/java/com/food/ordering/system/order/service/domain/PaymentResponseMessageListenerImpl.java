@@ -1,7 +1,6 @@
 package com.food.ordering.system.order.service.domain;
 
 import com.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
-import com.food.ordering.system.order.service.domain.event.OrderPaidEvent;
 import com.food.ordering.system.order.service.domain.ports.input.message.listener.payment.PaymentResponseMessageListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,9 +19,9 @@ public class PaymentResponseMessageListenerImpl implements PaymentResponseMessag
     }
     @Override
     public void paymentCompleted(PaymentResponse paymentResponse) {
-       OrderPaidEvent orderPaidEvent= orderPaymnetSaga.process(paymentResponse);
-       log.info("Order paid event published for order id: {}", paymentResponse.getOrderId());
-       orderPaidEvent.fire();
+       orderPaymnetSaga.process(paymentResponse);
+       log.info("Order payment saga process operation is completed for order id: {}", paymentResponse.getOrderId());
+       
 
     }
 

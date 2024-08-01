@@ -3,6 +3,8 @@ package com.food.ordering.system.order.service.domain;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.food.ordering.system.domain.valueobject.OrderStatus;
+import com.food.ordering.system.saga.SagaStatus;
 import org.springframework.stereotype.Component;
 
 import com.food.ordering.system.domain.valueobject.OrderId;
@@ -33,5 +35,19 @@ public class OrderSagaHelper {
     void saveOrder(Order order) {
         orderRepository.save(order);
     }
-
+    SagaStatus orderStatusToSagaStatus(OrderStatus orderStatus){
+        switch (orderStatus){
+            case PAID :
+                return SagaStatus.PROCESSING;
+            case APPROVED:
+                return SagaStatus.SUCED;
+            case CANCELLING:
+                return SagaStatus.COMPENSATING;
+            case CANCELLED:
+                return SagaStatus.COMPENSTED;
+            default:
+                return SagaStatus.STARTED;
+                
+        }
+    }
 }

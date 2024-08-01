@@ -1,5 +1,5 @@
 version: '3.7'
 
 networks:
-  food-ordering-system:
+  kafka:
     driver: bridge

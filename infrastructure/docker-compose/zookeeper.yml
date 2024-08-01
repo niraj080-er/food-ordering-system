@@ -17,4 +17,4 @@ services:
       - "./volumes/zookeeper/data:/var/lib/zookeeper/data"
       - "./volumes/zookeeper/transactions:/var/lib/zookeeper/log"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - food-ordering-system
