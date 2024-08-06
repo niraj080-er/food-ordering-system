@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 services:
   schema-registry:
     image: confluentinc/cp-schema-registry:${KAFKA_VERSION}
@@ -16,7 +16,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-broker-2:9092,LISTENER_LOCAL://localhost:29092
       SCHEMA_REGISTRY_DEBUG: 'true'
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - food-ordering-system
   kafka-broker-1:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-1
@@ -33,7 +33,7 @@ services:
     volumes:
       - "./volumes/kafka/broker-1:/var/lib/kafka/data"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - food-ordering-system
   kafka-broker-2:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-2
@@ -50,7 +50,7 @@ services:
     volumes:
       - "./volumes/kafka/broker-2:/var/lib/kafka/data"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - food-ordering-system
   kafka-broker-3:
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-3
@@ -67,7 +67,7 @@ services:
     volumes:
       - "./volumes/kafka/broker-3:/var/lib/kafka/data"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - food-ordering-system
   kafka-manager:
     image: hlebalbau/kafka-manager:stable
     restart: always
@@ -76,4 +76,4 @@ services:
     environment:
       ZK_HOSTS: "zookeeper:2181"
     networks:
-      - ${GLOBAL_NETWORK:-kafka}
+      - food-ordering-system
