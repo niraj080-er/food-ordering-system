@@ -20,8 +20,8 @@ public class OrderRejectedEvent extends OrderApprovalEvent {
         this.orderRejectedEventDomainEventPublisher = orderRejectedEventDomainEventPublisher;
     }
 
-    // @Override
-    // public void fire() {
-    //     orderRejectedEventDomainEventPublisher.publish(this);
-    // }
+    @Override
+    public void fire() {
+        orderRejectedEventDomainEventPublisher.publish(this);
+    }
 }
