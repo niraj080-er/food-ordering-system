@@ -29,14 +29,13 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public Optional<Order> findByTrackingId(TrackingId trackingId) {
-        return orderJpaRepository.findByTrackingId(trackingId.getValue())
-                .map(orderDataAccessMapper::orderEntityToOrder);
+    public Optional<Order> findById(OrderId orderId) {
+        return orderJpaRepository.findById(orderId.getValue()).map(orderDataAccessMapper::orderEntityToOrder);
     }
 
     @Override
-    public Optional<Order> findById(OrderId orderId) {
-        return orderJpaRepository.findById(orderId.getValue())
+    public Optional<Order> findByTrackingId(TrackingId trackingId) {
+        return orderJpaRepository.findByTrackingId(trackingId.getValue())
                 .map(orderDataAccessMapper::orderEntityToOrder);
     }
 }
