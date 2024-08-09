@@ -17,6 +17,7 @@
         <module>customer-container</module>
         <module>customer-application</module>
         <module>customer-application</module>
+        <module>customer-dataaccess</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 

@@ -15,7 +15,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>customer-domain-core</module>
-        <module>customer-aapplication-service</module>
+        <module>customer-application-service</module>
+        <module>customer-application-service</module>
     </modules>
 
     <properties>
