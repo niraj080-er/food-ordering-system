@@ -9,6 +9,7 @@ public class Customer extends AggregateRoot<CustomerId>{
     private String lastName;
 // generate constructor
     public Customer(CustomerId id, String userName, String firstName, String lastName) {
+        super.setId(id);
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;

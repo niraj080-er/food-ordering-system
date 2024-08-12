@@ -1,6 +1,5 @@
 package com.food.ordering.system.customer.service.domain;
 
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
@@ -12,6 +11,7 @@ import com.food.ordering.system.customer.service.domain.mapper.CustomerDataMappe
 import com.food.ordering.system.customer.service.domain.ports.output.repository.CustomerRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
@@ -36,11 +36,11 @@ public class CustomerCreateCommandHandler {
         CustomerCreatedEvent event = customerDomainService.validateAndInitiateCustomer(customer);
         Customer saveCustomer = customerRepository.createCustomer(customer);
         if (saveCustomer == null) {
-            log.error("customercould not save with id: {} ", customerCreateCommand.getCustomerId());
+            log.error("Customer could  not save with id: {} ", customerCreateCommand.getCustomerId());
             throw new CustomerDomainException(
-                    "customercould not save with id: " + customerCreateCommand.getCustomerId());
+                    "Customer could  not save with id: " + customerCreateCommand.getCustomerId());
         }
-        log.info("customercould save with id: {} ", customerCreateCommand.getCustomerId());
+        log.info("Customer could save with id: {} ", customerCreateCommand.getCustomerId());
         return event;
 
     }

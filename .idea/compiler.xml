@@ -5,11 +5,13 @@
       <directory url="file://$PROJECT_DIR$/customer-service/customer-domain/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common-application" />
+        <module name="customer-application-service" />
         <module name="kafka-model" />
         <module name="kafka-consumer" />
         <module name="payment-messaging" />
@@ -42,7 +44,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="customer-application-service" target="17" />
+      <module name="customer-aapplication-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
