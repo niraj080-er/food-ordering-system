@@ -1,3 +1,4 @@
+version: '3.7'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:${KAFKA_VERSION:-latest}
@@ -16,8 +17,4 @@ services:
       - "./volumes/zookeeper/data:/var/lib/zookeeper/data"
       - "./volumes/zookeeper/transactions:/var/lib/zookeeper/log"
     networks:
-      - food-ordering-system
-
-networks:
-  food-ordering-system:
-    external: true
+      - ${GLOBAL_NETWORK:-kafka}

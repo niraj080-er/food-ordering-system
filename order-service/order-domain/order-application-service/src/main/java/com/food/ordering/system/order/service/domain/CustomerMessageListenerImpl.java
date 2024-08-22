@@ -24,7 +24,7 @@ public class CustomerMessageListenerImpl implements CustomerMessageListener {
     }
 
     @Override
-    public void customerCreatedEvent(CustomerModel customerModel) {
+    public void customerCreated(CustomerModel customerModel) {
         Customer customer = customerRepository.save(orderDataMapper.customerModelToCustomer(customerModel));
         if (customer == null) {
             log.error("Customer could not be created in order database with id:{}", customerModel.getId());
@@ -33,6 +33,8 @@ public class CustomerMessageListenerImpl implements CustomerMessageListener {
         }
         log.info("Customer created in order database with id:{}", customerModel.getId());
     }
+
+        
     
 
 }

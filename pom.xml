@@ -11,6 +11,7 @@
         <module>customer-service</module>
         <module>payment-service</module>
         <module>restaurant-service</module>
+        <module>aop-service</module>
     </modules>
 
     <parent>
